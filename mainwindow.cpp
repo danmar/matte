@@ -27,8 +27,15 @@ void MainWindow::question() {
     ui->count->setText(QString::number(++mQuestionCount));
     int v1 = 1+std::rand() % 5;
     int v2 = 2+std::rand() % (9 - v1);
-    ui->label->setText(QString::number(v1) + " + " + QString::number(v2));
-    mCorrectAnswer = QString::number(v1 + v2);
+    if (mQuestionCount % 5 == 0) {
+        int sub1 = std::max(v1,v2);
+        int sub2 = std::min(v1,v2);
+        ui->label->setText(QString::number(sub1) + " - " + QString::number(sub2));
+        mCorrectAnswer = QString::number(sub1 - sub2);
+    } else {
+        ui->label->setText(QString::number(v1) + " + " + QString::number(v2));
+        mCorrectAnswer = QString::number(v1 + v2);
+    }
 }
 
 void MainWindow::answerChanged(QString s) {
