@@ -1,0 +1,46 @@
+
+name: windows-build
+
+on: [push, pull_request]
+
+defaults:
+  run:
+    shell: cmd
+
+jobs:
+
+  build:
+
+    runs-on: windows-2022
+
+    env:
+      QT_VERSION: 6.6
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Visual Studio environment
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install Qt ${{ env.QT_VERSION }}
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: ${{ env.QT_VERSION }}
+          cache: true
+
+      - name: Build
+        run: |
+          qmake || exit /b !errorlevel!
+          nmake -f Makefile.release || exit /b !errorlevel!
+        env:
+          CL: /MP
+
+      - name: Deploy
+        run: |
+          windeployqt release || exit /b !errorlevel!
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: matte
+          path: release
+
