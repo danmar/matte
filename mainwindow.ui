@@ -91,17 +91,28 @@
      <pixmap resource="files.qrc">:/2.png</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="blinkCount">
+   <widget class="QLabel" name="count">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>50</y>
-      <width>58</width>
-      <height>18</height>
+      <x>747</x>
+      <y>10</y>
+      <width>31</width>
+      <height>20</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">

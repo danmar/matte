@@ -24,6 +24,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::question() {
+    ui->count->setText(QString::number(++mQuestionCount));
     int v1 = 1+std::rand() % 5;
     int v2 = 2+std::rand() % (9 - v1);
     ui->label->setText(QString::number(v1) + " + " + QString::number(v2));
@@ -41,7 +42,7 @@ void MainWindow::answerChanged(QString s) {
 void MainWindow::blink() {
     if (mBlinkCount > 0)
         --mBlinkCount;
-    ui->blinkCount->setText(QString::number(mBlinkCount));
+    //ui->blinkCount->setText(QString::number(mBlinkCount));
     ui->pic1->setVisible(mBlinkCount > 0 && (mBlinkCount & 1) == 0);
     ui->pic2->setVisible(mBlinkCount > 0 && (mBlinkCount & 1) == 1);
 }

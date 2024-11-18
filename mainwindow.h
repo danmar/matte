@@ -27,6 +27,7 @@ private:
     Ui::MainWindow *ui;
     QTimer *timer;
     int mBlinkCount = 0;
+    int mQuestionCount = 0;
 
     QString mCorrectAnswer;
 
